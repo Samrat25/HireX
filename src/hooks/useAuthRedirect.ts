@@ -37,6 +37,7 @@ export const useAuthRedirect = (options?: AuthRedirectOptions) => {
           redirectPath = user.role === 'admin' ? '/admin' : '/candidate';
         }
         
+        console.log('Redirecting user with role:', user.role, 'to:', redirectPath);
         navigate(redirectPath, { replace: true });
       }
     }

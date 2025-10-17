@@ -71,13 +71,12 @@ class AuthService {
       const provider = new GoogleAuthProvider();
       const userCredential = await signInWithPopup(auth, provider);
       
-      // Check if user profile exists, if not create one
+      // Check if user profile exists, update last login if it does
       const userProfile = await this.getUserProfile(userCredential.user.uid);
-      if (!userProfile) {
-        await this.createUserProfile(userCredential.user, 'candidate');
-      } else {
+      if (userProfile) {
         await this.updateLastLogin(userCredential.user.uid);
       }
+      // Note: Profile creation for new users is handled in AuthContext
       
       return userCredential;
     } catch (error) {

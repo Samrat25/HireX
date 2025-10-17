@@ -114,6 +114,19 @@ const Landing = () => {
                 Sign In
               </Button>
               <Button 
+                variant="outline" 
+                size="sm"
+                className={`px-4 py-2 rounded-xl transition-all duration-300 hover:scale-105 border-purple-500 ${
+                  isDarkMode 
+                    ? 'text-purple-400 hover:text-white hover:bg-purple-500/20 hover:shadow-lg' 
+                    : 'text-purple-600 hover:text-white hover:bg-purple-500 hover:shadow-lg'
+                }`}
+                onClick={() => navigate("/admin-auth")}
+              >
+                <Shield className="h-4 w-4 mr-2" />
+                Admin
+              </Button>
+              <Button 
                 variant="default" 
                 size="sm"
                 className="px-6 py-2 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 hover:from-cyan-600 hover:via-blue-600 hover:to-purple-600 text-white border-0 rounded-xl shadow-lg hover:shadow-xl hover:shadow-cyan-500/25 transition-all duration-300 hover:scale-105 group"
@@ -234,6 +247,19 @@ const Landing = () => {
                     Sign In
                   </Button>
                   <Button 
+                    variant="outline" 
+                    size="sm"
+                    className={`w-full justify-start transition-colors duration-300 border-purple-500 ${
+                      isDarkMode 
+                        ? 'text-purple-400 hover:text-white hover:bg-purple-500/20' 
+                        : 'text-purple-600 hover:text-white hover:bg-purple-500'
+                    }`}
+                    onClick={() => navigate("/admin-auth")}
+                  >
+                    <Shield className="h-4 w-4 mr-2" />
+                    Admin Login
+                  </Button>
+                  <Button 
                     variant="default" 
                     size="sm"
                     className="w-full bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white border-0"
@@ -340,20 +366,22 @@ const Landing = () => {
       {/* Hero Section */}
       <section id="home" className="relative min-h-screen flex items-center justify-center px-4 pt-16">
         <div className="container mx-auto max-w-7xl">
-          <div className={`grid lg:grid-cols-2 gap-12 items-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div className={`grid lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[600px] transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             
             {/* Left Side - Text Content */}
-            <div className="text-left space-y-10">
-              <div className={`inline-flex items-center gap-4 rounded-2xl backdrop-blur-xl shadow-2xl hover:shadow-cyan-500/30 transition-all duration-500 hover:scale-105 px-8 py-4 group ${
+            <div className="text-left space-y-8 flex flex-col justify-center h-full">
+              <div className={`inline-flex items-center gap-3 rounded-full backdrop-blur-xl shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 hover:scale-[1.02] px-6 py-3 group ${
                 isDarkMode 
-                  ? 'bg-gradient-to-r from-cyan-500/20 via-blue-500/15 to-purple-500/20 text-white border border-white/30' 
-                  : 'bg-gradient-to-r from-blue-50/90 via-indigo-50/90 to-purple-50/90 text-gray-800 border border-blue-300/60'
+                  ? 'bg-gradient-to-r from-cyan-500/15 via-blue-500/12 to-purple-500/15 text-white border border-white/20' 
+                  : 'bg-gradient-to-r from-blue-50/95 via-indigo-50/95 to-purple-50/95 text-gray-800 border border-blue-300/50'
               }`}>
-                <Sparkles className="h-6 w-6 text-yellow-500 animate-spin group-hover:scale-110 transition-transform duration-300" />
-                <span className="text-base font-bold bg-gradient-to-r from-cyan-600 via-blue-600 to-purple-600 bg-clip-text text-transparent">
-                  🚀 Next-Generation AI Platform
-                </span>
-                <Star className="h-5 w-5 text-yellow-500 animate-bounce group-hover:scale-110 transition-transform duration-300" />
+                <div className="flex items-center gap-2">
+                  <Sparkles className="h-4 w-4 text-yellow-500 animate-pulse group-hover:animate-spin transition-all duration-300" />
+                  <span className="text-sm font-semibold bg-gradient-to-r from-cyan-600 via-blue-600 to-purple-600 bg-clip-text text-transparent tracking-wide">
+                    NEXT-GEN AI PLATFORM
+                  </span>
+                  <Star className="h-4 w-4 text-yellow-500 animate-pulse group-hover:animate-bounce transition-all duration-300" />
+                </div>
               </div>
               
               <h1 className={`text-5xl font-extrabold md:text-6xl lg:text-8xl leading-[0.9] transition-all duration-700 ${
@@ -448,9 +476,9 @@ const Landing = () => {
             </div>
 
             {/* Right Side - Mac-style Website Mockup */}
-            <div className="relative lg:pl-8">
+            <div className="relative lg:pl-8 flex items-center justify-center">
               {/* Mac Window Frame */}
-              <div className={`relative rounded-2xl shadow-2xl backdrop-blur-md overflow-hidden transform hover:scale-105 transition-all duration-700 hover:shadow-cyan-500/20 ${
+              <div className={`relative rounded-2xl shadow-2xl backdrop-blur-md overflow-hidden transform hover:scale-[1.02] transition-all duration-500 hover:shadow-cyan-500/20 w-full max-w-lg h-[600px] ${
                 isDarkMode 
                   ? 'bg-gradient-to-br from-slate-800/90 to-slate-900/90 border border-white/10' 
                   : 'bg-gradient-to-br from-white/95 to-gray-50/95 border border-gray-200/50'
@@ -479,7 +507,7 @@ const Landing = () => {
                 </div>
 
                 {/* Website Content */}
-                <div className="p-6 space-y-4">
+                <div className="p-6 space-y-4 h-full flex flex-col">
                   {/* Header */}
                   <div className={`flex items-center justify-between pb-4 border-b transition-all duration-500 ${
                     isDarkMode ? 'border-white/10' : 'border-gray-200/50'
@@ -591,9 +619,9 @@ const Landing = () => {
               </div>
 
               {/* Floating Elements around Mac */}
-              <div className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full opacity-20 animate-float blur-sm"></div>
-              <div className="absolute -bottom-6 -left-6 w-16 h-16 bg-gradient-to-r from-pink-500 to-purple-500 rounded-lg rotate-45 opacity-15 animate-float-delayed blur-sm"></div>
-              <div className="absolute top-1/2 -right-8 w-8 h-8 bg-gradient-to-r from-green-400 to-teal-500 rounded-full opacity-25 animate-float-slow blur-sm"></div>
+              <div className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full opacity-20 animate-bounce blur-sm"></div>
+              <div className="absolute -bottom-6 -left-6 w-16 h-16 bg-gradient-to-r from-pink-500 to-purple-500 rounded-lg rotate-45 opacity-15 animate-pulse blur-sm"></div>
+              <div className="absolute top-1/2 -right-8 w-8 h-8 bg-gradient-to-r from-green-400 to-teal-500 rounded-full opacity-25 animate-ping blur-sm"></div>
             </div>
           </div>
         </div>

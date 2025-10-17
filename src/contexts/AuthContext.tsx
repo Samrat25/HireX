@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, ReactNode, useRef } from 'react';
 import { onAuthStateChanged, User as FirebaseUser } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
 import { authService, UserProfile } from '@/lib/authService';
@@ -17,7 +17,8 @@ interface AuthContextType {
   firebaseUser: FirebaseUser | null;
   login: (email: string, password: string, expectedRole?: 'candidate' | 'admin') => Promise<void>;
   signUp: (email: string, password: string, displayName: string, role?: 'candidate' | 'admin') => Promise<void>;
-  loginWithGoogle: () => Promise<void>;
+  loginWithGoogle: (preferredRole?: 'candidate' | 'admin') => Promise<void>;
+  forceAdminLogin: () => Promise<void>;
   logout: () => Promise<void>;
   resetPassword: (email: string) => Promise<void>;
   updatePassword: (currentPassword: string, newPassword: string) => Promise<void>;
@@ -35,6 +36,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [roleWarning, setRoleWarning] = useState<string | null>(null);
+  const pendingRoleRef = useRef<'candidate' | 'admin' | null>(null);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
@@ -57,30 +59,36 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             };
             setUser(user);
           } else {
-            // If no profile exists, create a default one
+            // If no profile exists, create one with the pending role or default to candidate
+            const roleToUse = pendingRoleRef.current || 'candidate';
+            console.log('Creating new user profile with role:', roleToUse, 'pendingRole:', pendingRoleRef.current);
             try {
-              await authService.createUserProfile(firebaseUser, 'candidate');
+              await authService.createUserProfile(firebaseUser, roleToUse);
               const user: User = {
                 id: firebaseUser.uid,
                 email: firebaseUser.email || '',
-                role: 'candidate',
+                role: roleToUse,
                 name: firebaseUser.displayName || '',
                 isEmailVerified: firebaseUser.emailVerified,
                 profileComplete: false
               };
+              console.log('Created user with role:', user.role);
               setUser(user);
+              pendingRoleRef.current = null; // Clear pending role after use
             } catch (createError) {
               console.error('Error creating user profile:', createError);
               // Still set user even if profile creation fails
               const user: User = {
                 id: firebaseUser.uid,
                 email: firebaseUser.email || '',
-                role: 'candidate',
+                role: roleToUse,
                 name: firebaseUser.displayName || '',
                 isEmailVerified: firebaseUser.emailVerified,
                 profileComplete: false
               };
+              console.log('Created user (fallback) with role:', user.role);
               setUser(user);
+              pendingRoleRef.current = null; // Clear pending role after use
             }
           }
         } catch (error) {
@@ -147,13 +155,62 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const loginWithGoogle = async () => {
+  const loginWithGoogle = async (preferredRole?: 'candidate' | 'admin') => {
     try {
       setError(null);
+      setRoleWarning(null);
       setIsLoading(true);
-      await authService.signInWithGoogle();
+      
+      // Set pending role before authentication
+      if (preferredRole) {
+        console.log('Setting pending role to:', preferredRole);
+        pendingRoleRef.current = preferredRole;
+      }
+      
+      const userCredential = await authService.signInWithGoogle();
+      
+      // Check if it's an existing user with a different role
+      if (preferredRole && userCredential.user) {
+        const userProfile = await authService.getUserProfile(userCredential.user.uid);
+        if (userProfile && userProfile.role !== preferredRole) {
+          setRoleWarning(
+            `You signed in as ${preferredRole} but your account is registered as ${userProfile.role}. You'll be redirected to the ${userProfile.role} dashboard.`
+          );
+          pendingRoleRef.current = null; // Clear pending role since user already exists
+        }
+      }
     } catch (error: any) {
       setError(getErrorMessage(error));
+      pendingRoleRef.current = null; // Clear pending role on error
+      throw error;
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const forceAdminLogin = async () => {
+    try {
+      setError(null);
+      setRoleWarning(null);
+      setIsLoading(true);
+      
+      // Force admin role
+      pendingRoleRef.current = 'admin';
+      
+      const userCredential = await authService.signInWithGoogle();
+      
+      // For existing users, update their role to admin if needed
+      if (userCredential.user) {
+        const userProfile = await authService.getUserProfile(userCredential.user.uid);
+        if (userProfile && userProfile.role !== 'admin') {
+          // Update existing user to admin role
+          await authService.updateUserProfile(userCredential.user.uid, { role: 'admin' });
+          console.log('Updated existing user to admin role');
+        }
+      }
+    } catch (error: any) {
+      setError(getErrorMessage(error));
+      pendingRoleRef.current = null;
       throw error;
     } finally {
       setIsLoading(false);
@@ -233,6 +290,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       login, 
       signUp,
       loginWithGoogle,
+      forceAdminLogin,
       logout, 
       resetPassword,
       updatePassword,

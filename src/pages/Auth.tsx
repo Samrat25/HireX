@@ -121,11 +121,18 @@ const Auth = () => {
 
   const handleGoogleSignIn = async () => {
     setIsLoading(true);
+    console.log('Google sign in with selected role:', selectedRole);
     try {
-      await loginWithGoogle();
+      await loginWithGoogle(selectedRole);
+      
+      // Show success message with role-specific content
+      const roleMessage = selectedRole === 'admin' 
+        ? "Welcome to the admin dashboard!" 
+        : "Welcome to your candidate portal!";
+        
       toast({
         title: "Welcome!",
-        description: "You have successfully signed in with Google.",
+        description: roleMessage,
       });
     } catch (error: any) {
       toast({

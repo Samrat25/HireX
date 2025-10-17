@@ -7,6 +7,7 @@ import { AuthProvider } from "./contexts/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Landing from "./pages/Landing";
 import Auth from "./pages/Auth";
+import AdminAuth from "./pages/AdminAuth";
 import VerifyEmail from "./pages/VerifyEmail";
 import CandidateDashboard from "./pages/CandidateDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
@@ -27,44 +28,45 @@ const App = () => (
             {/* Public Routes */}
             <Route path="/" element={<Landing />} />
             <Route path="/auth" element={<Auth />} />
+            <Route path="/admin-auth" element={<AdminAuth />} />
             <Route path="/verify-email" element={<VerifyEmail />} />
-            
+
             {/* Protected Routes */}
-            <Route 
-              path="/candidate" 
+            <Route
+              path="/candidate"
               element={
                 <ProtectedRoute requiredRole="candidate">
                   <CandidateDashboard />
                 </ProtectedRoute>
-              } 
+              }
             />
-            <Route 
-              path="/admin" 
+            <Route
+              path="/admin"
               element={
                 <ProtectedRoute requiredRole="admin">
                   <AdminDashboard />
                 </ProtectedRoute>
-              } 
+              }
             />
-            <Route 
-              path="/analytics" 
+            <Route
+              path="/analytics"
               element={
                 <ProtectedRoute requiredRole="admin">
                   <Analytics />
                 </ProtectedRoute>
-              } 
+              }
             />
-            
+
             {/* Redirect /dashboard to appropriate role-based dashboard */}
-            <Route 
-              path="/dashboard" 
+            <Route
+              path="/dashboard"
               element={
                 <ProtectedRoute>
                   <Navigate to="/candidate" replace />
                 </ProtectedRoute>
-              } 
+              }
             />
-            
+
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
