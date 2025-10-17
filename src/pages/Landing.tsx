@@ -31,23 +31,25 @@ const Landing = () => {
   };
 
   return (
-    <div className={`min-h-screen relative overflow-hidden transition-all duration-700 ease-in-out ${
-      isDarkMode 
-        ? 'bg-gradient-to-br from-slate-950 via-indigo-950 via-purple-950 to-pink-950' 
+    <div className={`min-h-screen relative overflow-hidden transition-all duration-700 ease-in-out ${isDarkMode
+        ? 'bg-gradient-to-br from-slate-950 via-indigo-950 via-purple-950 to-pink-950'
         : 'bg-gradient-to-br from-white via-blue-50/80 via-indigo-50/60 to-purple-50/40'
-    }`}>
-      {/* Navigation Bar */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-xl border-b transition-all duration-500 ease-in-out ${
-        isDarkMode 
-          ? 'bg-slate-900/90 border-white/10 shadow-lg shadow-black/20' 
-          : 'bg-white/95 border-gray-200/60 shadow-lg shadow-gray-900/10'
       }`}>
+      {/* Navigation Bar */}
+      <nav className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-xl border-b transition-all duration-500 ease-in-out ${isDarkMode
+          ? 'bg-slate-900/90 border-white/10 shadow-lg shadow-black/20'
+          : 'bg-white/95 border-gray-200/60 shadow-lg shadow-gray-900/10'
+        }`}>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <div className="flex items-center gap-3 group">
-              <div className="p-2.5 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 rounded-xl shadow-lg hover:shadow-xl hover:shadow-cyan-500/25 transition-all duration-300 group-hover:scale-110">
-                <Brain className="h-6 w-6 text-white" />
+              <div className="p-1 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 rounded-xl shadow-lg hover:shadow-xl hover:shadow-cyan-500/25 transition-all duration-300 group-hover:scale-110">
+                <img
+                  src="/favicon.jpg"
+                  alt="HireX Logo"
+                  className="h-8 w-8 rounded-lg object-cover"
+                />
               </div>
               <span className="text-xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent hover:from-cyan-300 hover:via-blue-300 hover:to-purple-300 transition-all duration-300">
                 HireX
@@ -57,26 +59,24 @@ const Landing = () => {
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-1">
               {['home', 'features', 'positions', 'about', 'contact'].map((section) => (
-                <button 
+                <button
                   key={section}
                   onClick={() => scrollToSection(section)}
-                  className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 hover:scale-105 relative group ${
-                    isDarkMode 
-                      ? 'text-gray-300 hover:text-cyan-400 hover:bg-cyan-400/10' 
+                  className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 hover:scale-105 relative group ${isDarkMode
+                      ? 'text-gray-300 hover:text-cyan-400 hover:bg-cyan-400/10'
                       : 'text-gray-600 hover:text-blue-600 hover:bg-blue-100/60'
-                  }`}
+                    }`}
                 >
                   <span className="relative z-10 capitalize">
-                    {section === 'home' ? 'Home' : 
-                     section === 'features' ? 'Features' : 
-                     section === 'positions' ? 'Positions' : 
-                     section === 'about' ? 'About Us' : 'Contact'}
+                    {section === 'home' ? 'Home' :
+                      section === 'features' ? 'Features' :
+                        section === 'positions' ? 'Positions' :
+                          section === 'about' ? 'About Us' : 'Contact'}
                   </span>
-                  <div className={`absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
-                    isDarkMode 
-                      ? 'bg-gradient-to-r from-cyan-500/10 to-blue-500/10' 
+                  <div className={`absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${isDarkMode
+                      ? 'bg-gradient-to-r from-cyan-500/10 to-blue-500/10'
                       : 'bg-gradient-to-r from-blue-100/50 to-indigo-100/50'
-                  }`}></div>
+                    }`}></div>
                 </button>
               ))}
             </div>
@@ -88,46 +88,43 @@ const Landing = () => {
                 variant="ghost"
                 size="sm"
                 onClick={toggleTheme}
-                className={`p-2.5 rounded-xl transition-all duration-300 hover:scale-110 group ${
-                  isDarkMode 
-                    ? 'text-gray-300 hover:text-yellow-400 hover:bg-yellow-400/15 hover:shadow-lg hover:shadow-yellow-400/20' 
+                className={`p-2.5 rounded-xl transition-all duration-300 hover:scale-110 group ${isDarkMode
+                    ? 'text-gray-300 hover:text-yellow-400 hover:bg-yellow-400/15 hover:shadow-lg hover:shadow-yellow-400/20'
                     : 'text-gray-600 hover:text-amber-600 hover:bg-amber-100/80 hover:shadow-lg hover:shadow-amber-400/20'
-                }`}
+                  }`}
               >
-                {isDarkMode ? 
-                  <Sun className="h-5 w-5 group-hover:rotate-180 transition-transform duration-500" /> : 
+                {isDarkMode ?
+                  <Sun className="h-5 w-5 group-hover:rotate-180 transition-transform duration-500" /> :
                   <Moon className="h-5 w-5 group-hover:rotate-12 transition-transform duration-300" />
                 }
               </Button>
-              
-              <Button 
-                variant="ghost" 
+
+              <Button
+                variant="ghost"
                 size="sm"
-                className={`px-4 py-2 rounded-xl transition-all duration-300 hover:scale-105 ${
-                  isDarkMode 
-                    ? 'text-gray-300 hover:text-white hover:bg-white/10 hover:shadow-lg' 
+                className={`px-4 py-2 rounded-xl transition-all duration-300 hover:scale-105 ${isDarkMode
+                    ? 'text-gray-300 hover:text-white hover:bg-white/10 hover:shadow-lg'
                     : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100/80 hover:shadow-lg'
-                }`}
+                  }`}
                 onClick={() => navigate("/auth")}
               >
                 <LogIn className="h-4 w-4 mr-2" />
                 Sign In
               </Button>
-              <Button 
-                variant="outline" 
+              <Button
+                variant="outline"
                 size="sm"
-                className={`px-4 py-2 rounded-xl transition-all duration-300 hover:scale-105 border-purple-500 ${
-                  isDarkMode 
-                    ? 'text-purple-400 hover:text-white hover:bg-purple-500/20 hover:shadow-lg' 
+                className={`px-4 py-2 rounded-xl transition-all duration-300 hover:scale-105 border-purple-500 ${isDarkMode
+                    ? 'text-purple-400 hover:text-white hover:bg-purple-500/20 hover:shadow-lg'
                     : 'text-purple-600 hover:text-white hover:bg-purple-500 hover:shadow-lg'
-                }`}
+                  }`}
                 onClick={() => navigate("/admin-auth")}
               >
                 <Shield className="h-4 w-4 mr-2" />
                 Admin
               </Button>
-              <Button 
-                variant="default" 
+              <Button
+                variant="default"
                 size="sm"
                 className="px-6 py-2 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 hover:from-cyan-600 hover:via-blue-600 hover:to-purple-600 text-white border-0 rounded-xl shadow-lg hover:shadow-xl hover:shadow-cyan-500/25 transition-all duration-300 hover:scale-105 group"
                 onClick={() => navigate("/auth")}
@@ -144,28 +141,26 @@ const Landing = () => {
                 variant="ghost"
                 size="sm"
                 onClick={toggleTheme}
-                className={`p-2.5 rounded-xl transition-all duration-300 hover:scale-110 group ${
-                  isDarkMode 
-                    ? 'text-gray-300 hover:text-yellow-400 hover:bg-yellow-400/15' 
+                className={`p-2.5 rounded-xl transition-all duration-300 hover:scale-110 group ${isDarkMode
+                    ? 'text-gray-300 hover:text-yellow-400 hover:bg-yellow-400/15'
                     : 'text-gray-600 hover:text-amber-600 hover:bg-amber-100/80'
-                }`}
+                  }`}
               >
-                {isDarkMode ? 
-                  <Sun className="h-5 w-5 group-hover:rotate-180 transition-transform duration-500" /> : 
+                {isDarkMode ?
+                  <Sun className="h-5 w-5 group-hover:rotate-180 transition-transform duration-500" /> :
                   <Moon className="h-5 w-5 group-hover:rotate-12 transition-transform duration-300" />
                 }
               </Button>
-              
+
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className={`p-2.5 rounded-xl transition-all duration-300 hover:scale-110 ${
-                  isDarkMode 
-                    ? 'text-gray-300 hover:text-white hover:bg-white/10' 
+                className={`p-2.5 rounded-xl transition-all duration-300 hover:scale-110 ${isDarkMode
+                    ? 'text-gray-300 hover:text-white hover:bg-white/10'
                     : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100/80'
-                }`}
+                  }`}
               >
-                {isMobileMenuOpen ? 
-                  <X className="h-6 w-6 rotate-0 hover:rotate-90 transition-transform duration-300" /> : 
+                {isMobileMenuOpen ?
+                  <X className="h-6 w-6 rotate-0 hover:rotate-90 transition-transform duration-300" /> :
                   <Menu className="h-6 w-6" />
                 }
               </button>
@@ -174,93 +169,84 @@ const Landing = () => {
 
           {/* Mobile Navigation Menu */}
           {isMobileMenuOpen && (
-            <div className={`md:hidden backdrop-blur-md border-t transition-all duration-300 ${
-              isDarkMode 
-                ? 'bg-slate-900/95 border-white/10' 
+            <div className={`md:hidden backdrop-blur-md border-t transition-all duration-300 ${isDarkMode
+                ? 'bg-slate-900/95 border-white/10'
                 : 'bg-white/95 border-gray-200/50'
-            }`}>
+              }`}>
               <div className="px-2 pt-2 pb-3 space-y-1">
-                <button 
+                <button
                   onClick={() => scrollToSection('home')}
-                  className={`block w-full text-left px-3 py-2 rounded-md transition-colors duration-300 ${
-                    isDarkMode 
-                      ? 'text-gray-300 hover:text-cyan-400 hover:bg-white/5' 
+                  className={`block w-full text-left px-3 py-2 rounded-md transition-colors duration-300 ${isDarkMode
+                      ? 'text-gray-300 hover:text-cyan-400 hover:bg-white/5'
                       : 'text-gray-600 hover:text-blue-600 hover:bg-gray-100'
-                  }`}
+                    }`}
                 >
                   Home
                 </button>
-                <button 
+                <button
                   onClick={() => scrollToSection('features')}
-                  className={`block w-full text-left px-3 py-2 rounded-md transition-colors duration-300 ${
-                    isDarkMode 
-                      ? 'text-gray-300 hover:text-cyan-400 hover:bg-white/5' 
+                  className={`block w-full text-left px-3 py-2 rounded-md transition-colors duration-300 ${isDarkMode
+                      ? 'text-gray-300 hover:text-cyan-400 hover:bg-white/5'
                       : 'text-gray-600 hover:text-blue-600 hover:bg-gray-100'
-                  }`}
+                    }`}
                 >
                   Features
                 </button>
-                <button 
+                <button
                   onClick={() => scrollToSection('positions')}
-                  className={`block w-full text-left px-3 py-2 rounded-md transition-colors duration-300 ${
-                    isDarkMode 
-                      ? 'text-gray-300 hover:text-cyan-400 hover:bg-white/5' 
+                  className={`block w-full text-left px-3 py-2 rounded-md transition-colors duration-300 ${isDarkMode
+                      ? 'text-gray-300 hover:text-cyan-400 hover:bg-white/5'
                       : 'text-gray-600 hover:text-blue-600 hover:bg-gray-100'
-                  }`}
+                    }`}
                 >
                   Positions
                 </button>
-                <button 
+                <button
                   onClick={() => scrollToSection('about')}
-                  className={`block w-full text-left px-3 py-2 rounded-md transition-colors duration-300 ${
-                    isDarkMode 
-                      ? 'text-gray-300 hover:text-cyan-400 hover:bg-white/5' 
+                  className={`block w-full text-left px-3 py-2 rounded-md transition-colors duration-300 ${isDarkMode
+                      ? 'text-gray-300 hover:text-cyan-400 hover:bg-white/5'
                       : 'text-gray-600 hover:text-blue-600 hover:bg-gray-100'
-                  }`}
+                    }`}
                 >
                   About Us
                 </button>
-                <button 
+                <button
                   onClick={() => scrollToSection('contact')}
-                  className={`block w-full text-left px-3 py-2 rounded-md transition-colors duration-300 ${
-                    isDarkMode 
-                      ? 'text-gray-300 hover:text-cyan-400 hover:bg-white/5' 
+                  className={`block w-full text-left px-3 py-2 rounded-md transition-colors duration-300 ${isDarkMode
+                      ? 'text-gray-300 hover:text-cyan-400 hover:bg-white/5'
                       : 'text-gray-600 hover:text-blue-600 hover:bg-gray-100'
-                  }`}
+                    }`}
                 >
                   Contact
                 </button>
-                <div className={`border-t pt-3 mt-3 space-y-2 ${
-                  isDarkMode ? 'border-white/10' : 'border-gray-200/50'
-                }`}>
-                  <Button 
-                    variant="ghost" 
+                <div className={`border-t pt-3 mt-3 space-y-2 ${isDarkMode ? 'border-white/10' : 'border-gray-200/50'
+                  }`}>
+                  <Button
+                    variant="ghost"
                     size="sm"
-                    className={`w-full justify-start transition-colors duration-300 ${
-                      isDarkMode 
-                        ? 'text-gray-300 hover:text-white hover:bg-white/10' 
+                    className={`w-full justify-start transition-colors duration-300 ${isDarkMode
+                        ? 'text-gray-300 hover:text-white hover:bg-white/10'
                         : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
-                    }`}
+                      }`}
                     onClick={() => navigate("/auth")}
                   >
                     <LogIn className="h-4 w-4 mr-2" />
                     Sign In
                   </Button>
-                  <Button 
-                    variant="outline" 
+                  <Button
+                    variant="outline"
                     size="sm"
-                    className={`w-full justify-start transition-colors duration-300 border-purple-500 ${
-                      isDarkMode 
-                        ? 'text-purple-400 hover:text-white hover:bg-purple-500/20' 
+                    className={`w-full justify-start transition-colors duration-300 border-purple-500 ${isDarkMode
+                        ? 'text-purple-400 hover:text-white hover:bg-purple-500/20'
                         : 'text-purple-600 hover:text-white hover:bg-purple-500'
-                    }`}
+                      }`}
                     onClick={() => navigate("/admin-auth")}
                   >
                     <Shield className="h-4 w-4 mr-2" />
                     Admin Login
                   </Button>
-                  <Button 
-                    variant="default" 
+                  <Button
+                    variant="default"
                     size="sm"
                     className="w-full bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white border-0"
                     onClick={() => navigate("/auth")}
@@ -278,49 +264,43 @@ const Landing = () => {
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Enhanced Floating Orbs with better performance */}
-        <div className={`absolute top-20 left-10 w-96 h-96 rounded-full blur-3xl animate-glow-pulse will-change-transform ${
-          isDarkMode 
-            ? 'bg-gradient-to-br from-cyan-400/25 via-blue-500/20 to-purple-600/25' 
+        <div className={`absolute top-20 left-10 w-96 h-96 rounded-full blur-3xl animate-glow-pulse will-change-transform ${isDarkMode
+            ? 'bg-gradient-to-br from-cyan-400/25 via-blue-500/20 to-purple-600/25'
             : 'bg-gradient-to-br from-blue-200/30 via-indigo-300/25 to-purple-300/30'
-        }`}></div>
-        <div className={`absolute top-40 right-10 w-[500px] h-[500px] rounded-full blur-3xl animate-glow-pulse will-change-transform ${
-          isDarkMode 
-            ? 'bg-gradient-to-br from-purple-400/20 via-pink-500/15 to-rose-600/20' 
+          }`}></div>
+        <div className={`absolute top-40 right-10 w-[500px] h-[500px] rounded-full blur-3xl animate-glow-pulse will-change-transform ${isDarkMode
+            ? 'bg-gradient-to-br from-purple-400/20 via-pink-500/15 to-rose-600/20'
             : 'bg-gradient-to-br from-purple-200/25 via-pink-300/20 to-rose-300/25'
-        }`} style={{ animationDelay: '1s' }}></div>
-        <div className={`absolute bottom-20 left-1/3 w-80 h-80 rounded-full blur-3xl animate-glow-pulse will-change-transform ${
-          isDarkMode 
-            ? 'bg-gradient-to-br from-emerald-400/15 via-teal-500/12 to-cyan-600/15' 
+          }`} style={{ animationDelay: '1s' }}></div>
+        <div className={`absolute bottom-20 left-1/3 w-80 h-80 rounded-full blur-3xl animate-glow-pulse will-change-transform ${isDarkMode
+            ? 'bg-gradient-to-br from-emerald-400/15 via-teal-500/12 to-cyan-600/15'
             : 'bg-gradient-to-br from-emerald-200/20 via-teal-300/15 to-cyan-300/20'
-        }`} style={{ animationDelay: '2s' }}></div>
-        <div className={`absolute top-1/2 right-1/4 w-64 h-64 rounded-full blur-3xl animate-glow-pulse will-change-transform ${
-          isDarkMode 
-            ? 'bg-gradient-to-br from-yellow-400/12 via-orange-500/10 to-red-600/12' 
+          }`} style={{ animationDelay: '2s' }}></div>
+        <div className={`absolute top-1/2 right-1/4 w-64 h-64 rounded-full blur-3xl animate-glow-pulse will-change-transform ${isDarkMode
+            ? 'bg-gradient-to-br from-yellow-400/12 via-orange-500/10 to-red-600/12'
             : 'bg-gradient-to-br from-yellow-200/18 via-orange-300/15 to-red-300/18'
-        }`} style={{ animationDelay: '3s' }}></div>
-        
+          }`} style={{ animationDelay: '3s' }}></div>
+
         {/* Enhanced Animated Grid with better opacity */}
-        <div className={`absolute inset-0 bg-[size:80px_80px] [mask-image:radial-gradient(ellipse_70%_40%_at_50%_0%,#000_60%,transparent_100%)] transition-all duration-700 ${
-          isDarkMode 
-            ? 'bg-[linear-gradient(rgba(59,130,246,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(147,51,234,0.04)_1px,transparent_1px)]' 
+        <div className={`absolute inset-0 bg-[size:80px_80px] [mask-image:radial-gradient(ellipse_70%_40%_at_50%_0%,#000_60%,transparent_100%)] transition-all duration-700 ${isDarkMode
+            ? 'bg-[linear-gradient(rgba(59,130,246,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(147,51,234,0.04)_1px,transparent_1px)]'
             : 'bg-[linear-gradient(rgba(59,130,246,0.12)_1px,transparent_1px),linear-gradient(90deg,rgba(147,51,234,0.12)_1px,transparent_1px)]'
-        }`}></div>
-        
+          }`}></div>
+
         {/* Optimized Floating Particles - Reduced count for better performance */}
         {[...Array(20)].map((_, i) => (
           <div
             key={i}
-            className={`absolute rounded-full animate-float will-change-transform ${
-              isDarkMode 
+            className={`absolute rounded-full animate-float will-change-transform ${isDarkMode
                 ? (i % 4 === 0 ? 'w-3 h-3 bg-gradient-to-r from-blue-400/30 to-cyan-400/30' :
-                   i % 4 === 1 ? 'w-2 h-2 bg-gradient-to-r from-purple-400/25 to-pink-400/25' :
-                   i % 4 === 2 ? 'w-1.5 h-1.5 bg-gradient-to-r from-emerald-400/20 to-teal-400/20' :
-                   'w-1 h-1 bg-gradient-to-r from-yellow-400/15 to-orange-400/15')
+                  i % 4 === 1 ? 'w-2 h-2 bg-gradient-to-r from-purple-400/25 to-pink-400/25' :
+                    i % 4 === 2 ? 'w-1.5 h-1.5 bg-gradient-to-r from-emerald-400/20 to-teal-400/20' :
+                      'w-1 h-1 bg-gradient-to-r from-yellow-400/15 to-orange-400/15')
                 : (i % 4 === 0 ? 'w-3 h-3 bg-gradient-to-r from-blue-300/40 to-cyan-300/40' :
-                   i % 4 === 1 ? 'w-2 h-2 bg-gradient-to-r from-purple-300/35 to-pink-300/35' :
-                   i % 4 === 2 ? 'w-1.5 h-1.5 bg-gradient-to-r from-emerald-300/30 to-teal-300/30' :
-                   'w-1 h-1 bg-gradient-to-r from-yellow-300/25 to-orange-300/25')
-            }`}
+                  i % 4 === 1 ? 'w-2 h-2 bg-gradient-to-r from-purple-300/35 to-pink-300/35' :
+                    i % 4 === 2 ? 'w-1.5 h-1.5 bg-gradient-to-r from-emerald-300/30 to-teal-300/30' :
+                      'w-1 h-1 bg-gradient-to-r from-yellow-300/25 to-orange-300/25')
+              }`}
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
@@ -334,9 +314,8 @@ const Landing = () => {
         {[...Array(3)].map((_, i) => (
           <div
             key={`star-${i}`}
-            className={`absolute w-1.5 h-1.5 rounded-full animate-ping will-change-transform ${
-              isDarkMode ? 'bg-gradient-to-r from-white to-cyan-200' : 'bg-gradient-to-r from-gray-700 to-blue-600'
-            }`}
+            className={`absolute w-1.5 h-1.5 rounded-full animate-ping will-change-transform ${isDarkMode ? 'bg-gradient-to-r from-white to-cyan-200' : 'bg-gradient-to-r from-gray-700 to-blue-600'
+              }`}
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 60}%`,
@@ -348,14 +327,14 @@ const Landing = () => {
       </div>
 
       {/* Enhanced Mouse Follower */}
-      <div 
+      <div
         className="fixed w-8 h-8 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 rounded-full blur-md opacity-40 pointer-events-none z-50 transition-all duration-500 animate-pulse"
         style={{
           left: mousePosition.x - 16,
           top: mousePosition.y - 16,
         }}
       ></div>
-      <div 
+      <div
         className="fixed w-4 h-4 bg-gradient-to-r from-pink-400 to-purple-500 rounded-full opacity-60 pointer-events-none z-50 transition-all duration-300"
         style={{
           left: mousePosition.x - 8,
@@ -367,14 +346,13 @@ const Landing = () => {
       <section id="home" className="relative min-h-screen flex items-center justify-center px-4 pt-16">
         <div className="container mx-auto max-w-7xl">
           <div className={`grid lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[600px] transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            
+
             {/* Left Side - Text Content */}
             <div className="text-left space-y-8 flex flex-col justify-center h-full">
-              <div className={`inline-flex items-center gap-3 rounded-full backdrop-blur-xl shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 hover:scale-[1.02] px-6 py-3 group ${
-                isDarkMode 
-                  ? 'bg-gradient-to-r from-cyan-500/15 via-blue-500/12 to-purple-500/15 text-white border border-white/20' 
+              <div className={`inline-flex items-center gap-3 rounded-full backdrop-blur-xl shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 hover:scale-[1.02] px-6 py-3 group ${isDarkMode
+                  ? 'bg-gradient-to-r from-cyan-500/15 via-blue-500/12 to-purple-500/15 text-white border border-white/20'
                   : 'bg-gradient-to-r from-blue-50/95 via-indigo-50/95 to-purple-50/95 text-gray-800 border border-blue-300/50'
-              }`}>
+                }`}>
                 <div className="flex items-center gap-2">
                   <Sparkles className="h-4 w-4 text-yellow-500 animate-pulse group-hover:animate-spin transition-all duration-300" />
                   <span className="text-sm font-semibold bg-gradient-to-r from-cyan-600 via-blue-600 to-purple-600 bg-clip-text text-transparent tracking-wide">
@@ -383,19 +361,29 @@ const Landing = () => {
                   <Star className="h-4 w-4 text-yellow-500 animate-pulse group-hover:animate-bounce transition-all duration-300" />
                 </div>
               </div>
-              
-              <h1 className={`text-5xl font-extrabold md:text-6xl lg:text-8xl leading-[0.9] transition-all duration-700 ${
-                isDarkMode ? 'text-white' : 'text-gray-900'
-              }`}>
+
+              {/* Hero Logo */}
+              <div className="flex items-center gap-4 mb-6">
+                <div className="p-3 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 rounded-2xl shadow-2xl hover:shadow-cyan-500/30 transition-all duration-300 hover:scale-110">
+                  <img
+                    src="/favicon.jpg"
+                    alt="HireX Logo"
+                    className="h-12 w-12 md:h-16 md:w-16 rounded-xl object-cover"
+                  />
+                </div>
+                <div className="h-12 md:h-16 w-1 bg-gradient-to-b from-cyan-400 via-blue-400 to-purple-400 rounded-full"></div>
+              </div>
+
+              <h1 className={`text-5xl font-extrabold md:text-6xl lg:text-8xl leading-[0.9] transition-all duration-700 ${isDarkMode ? 'text-white' : 'text-gray-900'
+                }`}>
                 <span className="bg-gradient-to-r from-cyan-400 via-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient bg-[length:400%_400%] hover:scale-105 transition-transform duration-300 inline-block">
                   HireX
                 </span>
                 <br />
-                <span className={`bg-gradient-to-r bg-clip-text text-transparent transition-all duration-500 hover:scale-105 inline-block ${
-                  isDarkMode 
-                    ? 'from-white via-blue-100 to-purple-100' 
+                <span className={`bg-gradient-to-r bg-clip-text text-transparent transition-all duration-500 hover:scale-105 inline-block ${isDarkMode
+                    ? 'from-white via-blue-100 to-purple-100'
                     : 'from-gray-900 via-blue-800 to-purple-800'
-                }`}>
+                  }`}>
                   Faculty Recruitment
                 </span>
                 <br />
@@ -403,17 +391,16 @@ const Landing = () => {
                   Reimagined
                 </span>
               </h1>
-              
-              <p className={`text-xl md:text-2xl max-w-2xl leading-relaxed transition-all duration-500 ${
-                isDarkMode ? 'text-gray-300' : 'text-gray-600'
-              }`}>
-                Transform your hiring process with cutting-edge AI technology. Experience recruitment that's 
+
+              <p className={`text-xl md:text-2xl max-w-2xl leading-relaxed transition-all duration-500 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                }`}>
+                Transform your hiring process with cutting-edge AI technology. Experience recruitment that's
                 <span className="bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 bg-clip-text text-transparent font-bold hover:from-cyan-400 hover:via-blue-400 hover:to-purple-400 transition-all duration-300"> fair, fast, and transparent.</span>
               </p>
-              
+
               <div className="flex flex-col sm:flex-row gap-6 items-start">
-                <Button 
-                  variant="hero" 
+                <Button
+                  variant="hero"
                   size="lg"
                   className="text-xl px-12 py-5 bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600 hover:from-cyan-400 hover:via-blue-500 hover:to-purple-500 shadow-2xl hover:shadow-cyan-500/40 transform hover:scale-110 transition-all duration-500 group relative overflow-hidden rounded-2xl font-bold"
                   onClick={() => navigate("/auth")}
@@ -424,15 +411,14 @@ const Landing = () => {
                   <span className="relative z-10">Start Your Journey</span>
                   <ArrowRight className="h-6 w-6 ml-4 group-hover:translate-x-3 group-hover:scale-110 transition-all duration-300 relative z-10" />
                 </Button>
-                
-                <Button 
-                  variant="outline" 
+
+                <Button
+                  variant="outline"
                   size="lg"
-                  className={`text-lg px-8 py-5 border-2 backdrop-blur-xl transition-all duration-500 hover:scale-110 hover:shadow-xl rounded-2xl font-semibold group ${
-                    isDarkMode 
-                      ? 'border-cyan-400/60 text-white hover:bg-gradient-to-r hover:from-cyan-500/20 hover:to-purple-500/20 hover:shadow-cyan-500/30' 
+                  className={`text-lg px-8 py-5 border-2 backdrop-blur-xl transition-all duration-500 hover:scale-110 hover:shadow-xl rounded-2xl font-semibold group ${isDarkMode
+                      ? 'border-cyan-400/60 text-white hover:bg-gradient-to-r hover:from-cyan-500/20 hover:to-purple-500/20 hover:shadow-cyan-500/30'
                       : 'border-blue-500/70 text-gray-700 hover:bg-gradient-to-r hover:from-blue-100/70 hover:to-purple-100/70 hover:shadow-blue-500/30'
-                  }`}
+                    }`}
                   onClick={() => scrollToSection('features')}
                 >
                   <Globe className="h-6 w-6 mr-3 group-hover:rotate-12 group-hover:scale-110 transition-all duration-300" />
@@ -442,35 +428,29 @@ const Landing = () => {
 
               {/* Enhanced Stats */}
               <div className="grid grid-cols-3 gap-8 pt-12">
-                <div className={`text-center p-6 rounded-2xl backdrop-blur-sm transition-all duration-500 hover:scale-110 group ${
-                  isDarkMode 
-                    ? 'bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-400/20' 
+                <div className={`text-center p-6 rounded-2xl backdrop-blur-sm transition-all duration-500 hover:scale-110 group ${isDarkMode
+                    ? 'bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-400/20'
                     : 'bg-gradient-to-br from-cyan-50/80 to-blue-50/80 border border-cyan-200/50'
-                }`}>
+                  }`}>
                   <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300">500+</div>
-                  <div className={`text-sm font-medium mt-2 transition-colors duration-500 ${
-                    isDarkMode ? 'text-gray-300' : 'text-gray-600'
-                  }`}>Successful Hires</div>
+                  <div className={`text-sm font-medium mt-2 transition-colors duration-500 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                    }`}>Successful Hires</div>
                 </div>
-                <div className={`text-center p-6 rounded-2xl backdrop-blur-sm transition-all duration-500 hover:scale-110 group ${
-                  isDarkMode 
-                    ? 'bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-400/20' 
+                <div className={`text-center p-6 rounded-2xl backdrop-blur-sm transition-all duration-500 hover:scale-110 group ${isDarkMode
+                    ? 'bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-400/20'
                     : 'bg-gradient-to-br from-purple-50/80 to-pink-50/80 border border-purple-200/50'
-                }`}>
+                  }`}>
                   <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300">98%</div>
-                  <div className={`text-sm font-medium mt-2 transition-colors duration-500 ${
-                    isDarkMode ? 'text-gray-300' : 'text-gray-600'
-                  }`}>Success Rate</div>
+                  <div className={`text-sm font-medium mt-2 transition-colors duration-500 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                    }`}>Success Rate</div>
                 </div>
-                <div className={`text-center p-6 rounded-2xl backdrop-blur-sm transition-all duration-500 hover:scale-110 group ${
-                  isDarkMode 
-                    ? 'bg-gradient-to-br from-emerald-500/10 to-teal-500/10 border border-emerald-400/20' 
+                <div className={`text-center p-6 rounded-2xl backdrop-blur-sm transition-all duration-500 hover:scale-110 group ${isDarkMode
+                    ? 'bg-gradient-to-br from-emerald-500/10 to-teal-500/10 border border-emerald-400/20'
                     : 'bg-gradient-to-br from-emerald-50/80 to-teal-50/80 border border-emerald-200/50'
-                }`}>
+                  }`}>
                   <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300">60%</div>
-                  <div className={`text-sm font-medium mt-2 transition-colors duration-500 ${
-                    isDarkMode ? 'text-gray-300' : 'text-gray-600'
-                  }`}>Time Saved</div>
+                  <div className={`text-sm font-medium mt-2 transition-colors duration-500 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                    }`}>Time Saved</div>
                 </div>
               </div>
             </div>
@@ -478,29 +458,26 @@ const Landing = () => {
             {/* Right Side - Mac-style Website Mockup */}
             <div className="relative lg:pl-8 flex items-center justify-center">
               {/* Mac Window Frame */}
-              <div className={`relative rounded-2xl shadow-2xl backdrop-blur-md overflow-hidden transform hover:scale-[1.02] transition-all duration-500 hover:shadow-cyan-500/20 w-full max-w-lg h-[600px] ${
-                isDarkMode 
-                  ? 'bg-gradient-to-br from-slate-800/90 to-slate-900/90 border border-white/10' 
+              <div className={`relative rounded-2xl shadow-2xl backdrop-blur-md overflow-hidden transform hover:scale-[1.02] transition-all duration-500 hover:shadow-cyan-500/20 w-full max-w-lg h-[600px] ${isDarkMode
+                  ? 'bg-gradient-to-br from-slate-800/90 to-slate-900/90 border border-white/10'
                   : 'bg-gradient-to-br from-white/95 to-gray-50/95 border border-gray-200/50'
-              }`}>
-                
-                {/* Mac Title Bar */}
-                <div className={`flex items-center gap-2 px-4 py-3 border-b transition-all duration-500 ${
-                  isDarkMode 
-                    ? 'bg-gradient-to-r from-slate-700/80 to-slate-800/80 border-white/10' 
-                    : 'bg-gradient-to-r from-gray-100/80 to-gray-200/80 border-gray-200/50'
                 }`}>
+
+                {/* Mac Title Bar */}
+                <div className={`flex items-center gap-2 px-4 py-3 border-b transition-all duration-500 ${isDarkMode
+                    ? 'bg-gradient-to-r from-slate-700/80 to-slate-800/80 border-white/10'
+                    : 'bg-gradient-to-r from-gray-100/80 to-gray-200/80 border-gray-200/50'
+                  }`}>
                   <div className="flex gap-2">
                     <div className="w-3 h-3 bg-red-500 rounded-full"></div>
                     <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
                     <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                   </div>
                   <div className="flex-1 text-center">
-                    <div className={`rounded-md px-3 py-1 text-xs inline-block transition-all duration-500 ${
-                      isDarkMode 
-                        ? 'bg-slate-600/50 text-gray-300' 
+                    <div className={`rounded-md px-3 py-1 text-xs inline-block transition-all duration-500 ${isDarkMode
+                        ? 'bg-slate-600/50 text-gray-300'
                         : 'bg-gray-300/50 text-gray-600'
-                    }`}>
+                      }`}>
                       hirex.ai - Faculty Recruitment Platform
                     </div>
                   </div>
@@ -509,71 +486,63 @@ const Landing = () => {
                 {/* Website Content */}
                 <div className="p-6 space-y-4 h-full flex flex-col">
                   {/* Header */}
-                  <div className={`flex items-center justify-between pb-4 border-b transition-all duration-500 ${
-                    isDarkMode ? 'border-white/10' : 'border-gray-200/50'
-                  }`}>
+                  <div className={`flex items-center justify-between pb-4 border-b transition-all duration-500 ${isDarkMode ? 'border-white/10' : 'border-gray-200/50'
+                    }`}>
                     <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-lg flex items-center justify-center">
-                        <Brain className="h-4 w-4 text-white" />
+                      <div className="w-8 h-8 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-lg flex items-center justify-center p-0.5">
+                        <img
+                          src="/favicon.jpg"
+                          alt="HireX Logo"
+                          className="h-full w-full rounded object-cover"
+                        />
                       </div>
-                      <span className={`font-bold transition-colors duration-500 ${
-                        isDarkMode ? 'text-white' : 'text-gray-800'
-                      }`}>HireX</span>
+                      <span className={`font-bold transition-colors duration-500 ${isDarkMode ? 'text-white' : 'text-gray-800'
+                        }`}>HireX</span>
                     </div>
                     <div className="flex gap-2">
-                      <div className={`w-16 h-6 rounded border transition-all duration-500 ${
-                        isDarkMode 
-                          ? 'bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border-cyan-400/30' 
+                      <div className={`w-16 h-6 rounded border transition-all duration-500 ${isDarkMode
+                          ? 'bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border-cyan-400/30'
                           : 'bg-gradient-to-r from-cyan-200/40 to-purple-200/40 border-cyan-300/50'
-                      }`}></div>
-                      <div className={`w-12 h-6 rounded border transition-all duration-500 ${
-                        isDarkMode 
-                          ? 'bg-gradient-to-r from-green-500/20 to-blue-500/20 border-green-400/30' 
+                        }`}></div>
+                      <div className={`w-12 h-6 rounded border transition-all duration-500 ${isDarkMode
+                          ? 'bg-gradient-to-r from-green-500/20 to-blue-500/20 border-green-400/30'
                           : 'bg-gradient-to-r from-green-200/40 to-blue-200/40 border-green-300/50'
-                      }`}></div>
+                        }`}></div>
                     </div>
                   </div>
 
                   {/* Dashboard Cards */}
                   <div className="grid grid-cols-2 gap-3">
-                    <div className={`rounded-lg p-3 border transition-all duration-500 ${
-                      isDarkMode 
-                        ? 'bg-gradient-to-br from-blue-500/10 to-purple-500/10 border-blue-400/20' 
+                    <div className={`rounded-lg p-3 border transition-all duration-500 ${isDarkMode
+                        ? 'bg-gradient-to-br from-blue-500/10 to-purple-500/10 border-blue-400/20'
                         : 'bg-gradient-to-br from-blue-100/60 to-purple-100/60 border-blue-300/40'
-                    }`}>
+                      }`}>
                       <div className="flex items-center gap-2 mb-2">
                         <Users className="h-4 w-4 text-blue-500" />
-                        <span className={`text-xs transition-colors duration-500 ${
-                          isDarkMode ? 'text-gray-300' : 'text-gray-600'
-                        }`}>Candidates</span>
+                        <span className={`text-xs transition-colors duration-500 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                          }`}>Candidates</span>
                       </div>
-                      <div className={`text-lg font-bold transition-colors duration-500 ${
-                        isDarkMode ? 'text-white' : 'text-gray-800'
-                      }`}>1,247</div>
-                      <div className={`w-full h-1 rounded-full mt-2 transition-all duration-500 ${
-                        isDarkMode ? 'bg-blue-500/20' : 'bg-blue-200/40'
-                      }`}>
+                      <div className={`text-lg font-bold transition-colors duration-500 ${isDarkMode ? 'text-white' : 'text-gray-800'
+                        }`}>1,247</div>
+                      <div className={`w-full h-1 rounded-full mt-2 transition-all duration-500 ${isDarkMode ? 'bg-blue-500/20' : 'bg-blue-200/40'
+                        }`}>
                         <div className="w-3/4 h-full bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"></div>
                       </div>
                     </div>
-                    
-                    <div className={`rounded-lg p-3 border transition-all duration-500 ${
-                      isDarkMode 
-                        ? 'bg-gradient-to-br from-green-500/10 to-teal-500/10 border-green-400/20' 
+
+                    <div className={`rounded-lg p-3 border transition-all duration-500 ${isDarkMode
+                        ? 'bg-gradient-to-br from-green-500/10 to-teal-500/10 border-green-400/20'
                         : 'bg-gradient-to-br from-green-100/60 to-teal-100/60 border-green-300/40'
-                    }`}>
+                      }`}>
                       <div className="flex items-center gap-2 mb-2">
                         <BarChart3 className="h-4 w-4 text-green-500" />
-                        <span className={`text-xs transition-colors duration-500 ${
-                          isDarkMode ? 'text-gray-300' : 'text-gray-600'
-                        }`}>Success Rate</span>
+                        <span className={`text-xs transition-colors duration-500 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'
+                          }`}>Success Rate</span>
                       </div>
-                      <div className={`text-lg font-bold transition-colors duration-500 ${
-                        isDarkMode ? 'text-white' : 'text-gray-800'
-                      }`}>98.5%</div>
-                      <div className={`w-full h-1 rounded-full mt-2 transition-all duration-500 ${
-                        isDarkMode ? 'bg-green-500/20' : 'bg-green-200/40'
-                      }`}>
+                      <div className={`text-lg font-bold transition-colors duration-500 ${isDarkMode ? 'text-white' : 'text-gray-800'
+                        }`}>98.5%</div>
+                      <div className={`w-full h-1 rounded-full mt-2 transition-all duration-500 ${isDarkMode ? 'bg-green-500/20' : 'bg-green-200/40'
+                        }`}>
                         <div className="w-full h-full bg-gradient-to-r from-green-400 to-teal-400 rounded-full"></div>
                       </div>
                     </div>
@@ -633,7 +602,7 @@ const Landing = () => {
         <div className="container mx-auto max-w-6xl relative">
           <div className="mb-20 text-center">
             <h2 className="mb-6 text-5xl font-bold text-white md:text-6xl">
-              Why Choose 
+              Why Choose
               <span className="bg-gradient-to-r from-cyan-400 via-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient bg-[length:400%_400%]"> HireX?</span>
             </h2>
             <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
@@ -658,7 +627,7 @@ const Landing = () => {
               </div>
             </Card>
 
-            <Card className="group bg-gradient-to-br from-slate-800/60 via-purple-900/40 to-slate-900/60 border-purple-500/30 p-8 shadow-2xl backdrop-blur-md hover:shadow-purple-500/30 transition-all duration-700 hover:scale-110 hover:-translate-y-4 relative overflow-hidden animate-slide-up" style={{animationDelay: '0.2s'}}>
+            <Card className="group bg-gradient-to-br from-slate-800/60 via-purple-900/40 to-slate-900/60 border-purple-500/30 p-8 shadow-2xl backdrop-blur-md hover:shadow-purple-500/30 transition-all duration-700 hover:scale-110 hover:-translate-y-4 relative overflow-hidden animate-slide-up" style={{ animationDelay: '0.2s' }}>
               <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-pink-500/10 to-red-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
               <div className="absolute inset-0 animate-shimmer opacity-0 group-hover:opacity-100"></div>
               <div className="relative z-10">
@@ -672,7 +641,7 @@ const Landing = () => {
               </div>
             </Card>
 
-            <Card className="group bg-gradient-to-br from-slate-800/60 via-emerald-900/40 to-slate-900/60 border-emerald-500/30 p-8 shadow-2xl backdrop-blur-md hover:shadow-emerald-500/30 transition-all duration-700 hover:scale-110 hover:-translate-y-4 relative overflow-hidden animate-slide-up" style={{animationDelay: '0.4s'}}>
+            <Card className="group bg-gradient-to-br from-slate-800/60 via-emerald-900/40 to-slate-900/60 border-emerald-500/30 p-8 shadow-2xl backdrop-blur-md hover:shadow-emerald-500/30 transition-all duration-700 hover:scale-110 hover:-translate-y-4 relative overflow-hidden animate-slide-up" style={{ animationDelay: '0.4s' }}>
               <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-cyan-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
               <div className="absolute inset-0 animate-shimmer opacity-0 group-hover:opacity-100"></div>
               <div className="relative z-10">
@@ -695,7 +664,7 @@ const Landing = () => {
         <div className="container mx-auto max-w-6xl relative">
           <div className="mb-20 text-center">
             <h2 className="mb-6 text-5xl font-bold text-white md:text-6xl">
-              Open 
+              Open
               <span className="bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent"> Positions</span>
             </h2>
             <p className="text-xl text-gray-300 max-w-2xl mx-auto">
@@ -705,27 +674,27 @@ const Landing = () => {
 
           <div className="grid gap-8 md:grid-cols-3">
             {[
-              { 
-                title: "Professor", 
-                dept: "Computer Science", 
+              {
+                title: "Professor",
+                dept: "Computer Science",
                 type: "Full-time",
                 salary: "$80K - $120K",
                 icon: Brain,
                 color: "from-blue-500 to-purple-600",
                 hoverColor: "hover:shadow-blue-500/20"
               },
-              { 
-                title: "Lecturer", 
-                dept: "Mathematics", 
+              {
+                title: "Lecturer",
+                dept: "Mathematics",
                 type: "Full-time",
                 salary: "$70K - $100K",
                 icon: BarChart3,
                 color: "from-purple-500 to-pink-600",
                 hoverColor: "hover:shadow-purple-500/20"
               },
-              { 
-                title: "Research Associate", 
-                dept: "Physics", 
+              {
+                title: "Research Associate",
+                dept: "Physics",
                 type: "Contract",
                 salary: "$60K - $80K",
                 icon: Zap,
@@ -745,8 +714,8 @@ const Landing = () => {
                     <span className="text-sm text-blue-400 bg-blue-400/10 px-3 py-1 rounded-full">{position.type}</span>
                     <span className="text-sm text-green-400 font-semibold">{position.salary}</span>
                   </div>
-                  <Button 
-                    variant="default" 
+                  <Button
+                    variant="default"
                     className={`w-full bg-gradient-to-r ${position.color} hover:shadow-lg transform hover:scale-105 transition-all duration-300 text-white border-0`}
                     onClick={() => navigate("/auth")}
                   >
@@ -766,7 +735,7 @@ const Landing = () => {
         <div className="container mx-auto max-w-6xl relative">
           <div className="mb-20 text-center">
             <h2 className="mb-6 text-5xl font-bold text-white md:text-6xl">
-              About 
+              About
               <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent"> HireX</span>
             </h2>
             <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
@@ -838,23 +807,23 @@ const Landing = () => {
             </span>
             <Sparkles className="h-6 w-6 text-yellow-400 animate-bounce" />
           </div>
-          
+
           <h2 className="mb-8 text-6xl font-bold text-white md:text-7xl leading-tight">
-            Ready to 
+            Ready to
             <span className="bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 bg-clip-text text-transparent animate-gradient bg-[length:400%_400%]"> Transform</span>
             <br />
             <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Your Career?</span>
           </h2>
-          
+
           <p className="mb-12 text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
             🚀 Join thousands of educators who have already discovered their dream positions through our AI-powered platform.
             <br />
             <span className="text-yellow-400 font-bold">Start your success story today!</span>
           </p>
-          
+
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-8">
-            <Button 
-              variant="hero" 
+            <Button
+              variant="hero"
               size="lg"
               className="text-2xl px-16 py-8 bg-gradient-to-r from-yellow-500 via-orange-500 to-red-500 hover:from-yellow-600 hover:via-orange-600 hover:to-red-600 shadow-2xl hover:shadow-yellow-500/40 transform hover:scale-115 transition-all duration-500 group relative overflow-hidden"
               onClick={() => navigate("/auth")}
@@ -865,7 +834,7 @@ const Landing = () => {
               <Sparkles className="h-8 w-8 ml-4 group-hover:animate-bounce relative z-10" />
             </Button>
           </div>
-          
+
           <div className="flex justify-center items-center gap-8 text-gray-400">
             <div className="flex items-center gap-2">
               <CheckCircle className="h-5 w-5 text-green-400" />
@@ -888,7 +857,7 @@ const Landing = () => {
         <div className="container mx-auto max-w-6xl">
           <div className="mb-20 text-center">
             <h2 className="mb-6 text-5xl font-bold text-white md:text-6xl">
-              Get In 
+              Get In
               <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent"> Touch</span>
             </h2>
             <p className="text-xl text-gray-300 max-w-2xl mx-auto">
@@ -936,14 +905,14 @@ const Landing = () => {
                 Ready to begin your journey with HireX? Get started in just a few clicks and experience the future of faculty recruitment.
               </p>
               <div className="space-y-4">
-                <Button 
+                <Button
                   className="w-full bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white border-0 py-3"
                   onClick={() => navigate("/auth")}
                 >
                   <UserPlus className="h-5 w-5 mr-2" />
                   Create Account
                 </Button>
-                <Button 
+                <Button
                   variant="outline"
                   className="w-full border-cyan-400/50 text-cyan-400 hover:bg-cyan-400/10 py-3"
                   onClick={() => navigate("/auth")}
@@ -964,15 +933,19 @@ const Landing = () => {
           <div className="grid gap-8 md:grid-cols-4">
             <div className="col-span-2">
               <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-lg shadow-lg">
-                  <Brain className="h-6 w-6 text-white" />
+                <div className="p-1 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-lg shadow-lg">
+                  <img
+                    src="/favicon.jpg"
+                    alt="HireX Logo"
+                    className="h-8 w-8 rounded object-cover"
+                  />
                 </div>
                 <h3 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
                   HireX
                 </h3>
               </div>
               <p className="text-gray-400 mb-4 leading-relaxed">
-                Revolutionizing faculty recruitment with AI-powered technology. 
+                Revolutionizing faculty recruitment with AI-powered technology.
                 Fair, fast, and transparent hiring for the future of education.
               </p>
               <div className="flex gap-4">
@@ -987,7 +960,7 @@ const Landing = () => {
                 </div>
               </div>
             </div>
-            
+
             <div>
               <h4 className="text-lg font-semibold text-white mb-4">Quick Links</h4>
               <ul className="space-y-2 text-gray-400">
@@ -997,7 +970,7 @@ const Landing = () => {
                 <li><button onClick={() => scrollToSection('contact')} className="hover:text-cyan-400 transition-colors">Contact</button></li>
               </ul>
             </div>
-            
+
             <div>
               <h4 className="text-lg font-semibold text-white mb-4">Support</h4>
               <ul className="space-y-2 text-gray-400">
@@ -1008,7 +981,7 @@ const Landing = () => {
               </ul>
             </div>
           </div>
-          
+
           <div className="border-t border-white/10 mt-12 pt-8 text-center">
             <p className="text-gray-400">
               © 2025 HireX. All rights reserved. Made with ❤️ for the future of education.
